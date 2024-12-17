@@ -1,0 +1,122 @@
+/* NAV BAR */
+
+  /* це для абзацыв вподальшому 
+@font-face {
+    font-family: 'Tan Mon Cheri';
+    src: url('/fonts/tan-mon-cheri.woff2') format('woff2'),
+         url('/fonts/tan-mon-cheri.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+body {
+    font-family: 'Tan Mon Cheri', sans-serif;
+} */
+
+.custom-navbar {
+    background-color: #C763A0;
+}
+
+.nav-link {
+    color: white;
+}
+
+.navbar-nav .nav-link.active {
+    color:black;
+}
+
+.navbar-toggler {
+    background-color: white;
+} 
+
+.navbar-nav .nav-link {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.navbar-nav {
+    gap: 20px;
+}
+
+.nav-buttons {
+    margin-bottom: 20px;
+}
+
+.nav-buttons button {
+    padding: 10px 10px;
+    margin: 3px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.nav-buttons button.active {
+    background-color: #C763A0;
+    color: white;
+}
+
+
+/*SERVICES */
+
+
+
+
+/* PORTFOLIO */
+.images-container {
+    width: 75%; /* Контейнер займатиме 80% ширини батьківського елемента */
+    margin: 0 auto; /* Центруємо контейнер горизонтально */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Три стовпці */
+    gap: 15px; /* Простір між фотографіями */
+    justify-content: center;
+}
+
+
+.images-container img {
+    width: 100%; /* Заповнює комірку сітки */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.images-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Адаптація для планшетів */
+@media (max-width: 768px) {
+    .images-container {
+        grid-template-columns: repeat(2, 1fr); /* Два стовпці */
+    }
+}
+
+/* Адаптація для мобільних пристроїв 
+@media (max-width: 480px) {
+    .images-container {
+        grid-template-columns: 1fr; 
+    }
+/* } */
+
+.images-container {
+    width: 100%; /* Розтягнути контейнер на всю ширину */
+    height: auto; /* Висота контейнера */
+    background-image: url('./source/image/walve.jpg'); /* Шлях до зображення */
+    background-size: cover; /* Масштабування зображення, щоб покрити весь контейнер */
+    background-position: center; /* Центрування зображення */
+    background-repeat: no-repeat; /* Забороняє повторення зображення */
+}
+
+
+
+
+
+
+
+
+
+
+
+
