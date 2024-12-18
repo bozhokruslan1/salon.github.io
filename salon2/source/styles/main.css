@@ -1,4 +1,4 @@
-/* NAV BAR */
+/* NAV BAR: */
 
   /* це для абзацыв вподальшому 
 @font-face {
@@ -39,7 +39,9 @@ body {
 }
 
 .nav-buttons {
-    margin-bottom: 20px;
+    display: flex;           
+    justify-content: center; 
+    margin-bottom: 20px;     
 }
 
 .nav-buttons button {
@@ -58,12 +60,122 @@ body {
 }
 
 
-/*SERVICES */
+/*SERVICES: */
+        /* Основний контейнер */
+        .carousel-container {
+            position: relative;
+            max-width: 75%;
+            margin: auto;
+            overflow: hidden;
+            display: none; /* Сховані каруселі за замовчуванням */
+        }
+
+        .carousel-container.active {
+            display: block; /* Показати активну карусель */
+        }
+
+        /* Трек слайдів */
+        .carousel-track {
+            display: flex;
+            gap: 15px; /* Відстань між картинками */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Кожен слайд */
+        .carousel-item {
+            flex: 0 0 calc(33.333% - 15px); /* Три слайди для великих екранів */
+            height: 340.5px; /* Фіксована висота */
+            position: relative; /* Для тексту поверх картинки */
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Зображення заповнює весь контейнер */
+        }
+
+        /* Текст поверх зображення */
+        .carousel-item p {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #C763A0; /* Напівпрозорий фон */
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Верхні кнопки перемикання каруселей */
+        .switch-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 20px;
+        }
+
+        .switch-button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .switch-button.active {
+            background-color: #C763A0;
+            color: white;
+        }
+
+
+        /* Рахівник і кнопки */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+        }
+
+        .carousel-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #555;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .carousel-button:hover {
+            color: black;
+        }
+
+        .carousel-counter {
+            font-weight: bold;
+        }
+
+        /* Адаптація для планшетів і телефонів */
+        @media (max-width: 768px) {
+            .carousel-item {
+                flex: 0 0 calc(50% - 15px); /* Два слайди для планшетів і телефонів */
+            }
+        }
 
 
 
-
-/* PORTFOLIO */
+/* PORTFOLIO: */
 .images-container {
     width: 75%; /* Контейнер займатиме 80% ширини батьківського елемента */
     margin: 0 auto; /* Центруємо контейнер горизонтально */
@@ -101,9 +213,8 @@ body {
 /* } */
 
 .images-container {
-    width: 100%; /* Розтягнути контейнер на всю ширину */
+    width: 75%; /* Розтягнути контейнер на всю ширину */
     height: auto; /* Висота контейнера */
-    background-image: url('./source/image/walve.jpg'); /* Шлях до зображення */
     background-size: cover; /* Масштабування зображення, щоб покрити весь контейнер */
     background-position: center; /* Центрування зображення */
     background-repeat: no-repeat; /* Забороняє повторення зображення */

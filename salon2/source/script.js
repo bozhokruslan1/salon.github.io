@@ -1,3 +1,49 @@
+// SERVICES:
+const carousels = document.querySelectorAll('.carousel-container');
+        const switchButtons = document.querySelectorAll('.switch-button');
+        const tracks = document.querySelectorAll('.carousel-track');
+        const counters = document.querySelectorAll('.carousel-counter');
+        const prevButtons = document.querySelectorAll('.carousel-button.prev');
+        const nextButtons = document.querySelectorAll('.carousel-button.next');
+
+        // Перемикання між каруселями
+        switchButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                switchButtons.forEach(btn => btn.classList.remove('active'));
+                carousels.forEach(carousel => carousel.classList.remove('active'));
+                document.getElementById(`carousel-${button.dataset.carousel}`).classList.add('active');
+                button.classList.add('active');
+            });
+        });
+
+        // Логіка для кожної каруселі
+        carousels.forEach((carousel, index) => {
+            let currentIndex = 0;
+            const items = carousel.querySelectorAll('.carousel-item');
+            const track = tracks[index];
+            const counter = counters[index];
+
+            const updateCarousel = () => {
+                const itemWidth = items[0].getBoundingClientRect().width;
+                track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+                counter.textContent = `${currentIndex + 1} / ${items.length}`;
+            };
+
+            prevButtons[index].addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateCarousel();
+            });
+
+            nextButtons[index].addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            });
+
+            updateCarousel();
+        });
+ 
+
+//  PORTFOLIO:
  // Масиви з фотографіями для кожної категорії
  const imageCategories = {
     manicure: [
