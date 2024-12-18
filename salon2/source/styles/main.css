@@ -75,7 +75,7 @@ body {
         }
 
         /* Трек слайдів */
-        .carousel-track {
+        .services .carousel-track {
             display: flex;
             gap: 15px; /* Відстань між картинками */
             transition: transform 0.5s ease-in-out;
