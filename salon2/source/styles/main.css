@@ -82,7 +82,7 @@ body {
         }
 
         /* Кожен слайд */
-        .carousel-item {
+        .services .carousel-item {
             flex: 0 0 calc(33.333% - 15px); /* Три слайди для великих екранів */
             height: 340.5px; /* Фіксована висота */
             position: relative; /* Для тексту поверх картинки */
@@ -93,14 +93,14 @@ body {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .carousel-item img {
+        .services .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover; /* Зображення заповнює весь контейнер */
         }
 
         /* Текст поверх зображення */
-        .carousel-item p {
+        .services .carousel-item p {
             position: absolute;
             bottom: 0;
             width: 100%;
