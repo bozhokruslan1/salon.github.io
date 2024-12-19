@@ -46,21 +46,20 @@
             color: white;
         }
 
-        .slider-track {
-            display: flex;
-            gap: 15px;
-            /* Проміжок між слайдами */
-            transition: transform 0.5s ease-in-out;
-        }
-
         .slider {
             overflow: hidden;
             position: relative;
         }
 
+        .slider-track {
+            display: flex;
+            gap: 15px;
+            transition: transform 0.5s ease-in-out;
+        }
+
         .slider-item {
             flex: 0 0 calc(100% / 3);
-            /* Пропорційна ширина для 3 слайдів */
+            /* Три слайди на ноутбуках */
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -68,21 +67,16 @@
             overflow: hidden;
             position: relative;
             aspect-ratio: 3 / 2;
-            /* Встановлення співвідношення ширини до висоти */
         }
 
         .slider-item img {
             width: 100%;
-            /* Зображення заповнює ширину контейнера */
             height: 100%;
-            /* Зображення заповнює висоту контейнера */
             object-fit: cover;
-            /* Зберігає пропорції, заповнюючи весь контейнер */
         }
 
         .slider-item p {
             background-color: #C763A0;
-            /* Колір фону підписів */
             color: white;
             padding: 10px;
             margin: 0;
@@ -92,7 +86,6 @@
             bottom: 0;
             width: 100%;
             font-size: 1rem;
-            /* Адаптивний текст */
         }
 
         .slider-controls {
@@ -124,9 +117,8 @@
         @media (max-width: 768px) {
             .slider-item {
                 flex: 0 0 calc(100% / 2);
-                /* Два слайди на ряд */
+                /* Два слайди */
                 aspect-ratio: 3 / 2;
-                /* Пропорційна висота для планшетів */
             }
         }
 
@@ -134,9 +126,8 @@
         @media (max-width: 480px) {
             .slider-item {
                 flex: 0 0 100%;
-                /* Один слайд на ряд */
+                /* Один слайд */
                 aspect-ratio: 4 / 3;
-                /* Інше співвідношення ширини до висоти */
             }
         }
     </style>
@@ -154,7 +145,7 @@
 
         <!-- Слайдер -->
         <div class="slider">
-            <div class="slider-track">
+            <div class="slider-track" id="slider-track">
                 <!-- Слайди для жінок -->
                 <div class="slider-item women">
                     <img src="https://via.placeholder.com/300x200" alt="Фарбування волосся">
@@ -185,16 +176,16 @@
 
                 <!-- Слайди для дітей -->
                 <div class="slider-item kids">
-                    <img src="https://via.placeholder.com/300x200" alt="Дитячі стрижки">
-                    <p>Дитячі стрижки</p>
+                    <img src="https://via.placeholder.com/300x200" alt="Дитяча стрижка">
+                    <p>Дитяча стрижка</p>
                 </div>
                 <div class="slider-item kids">
-                    <img src="https://via.placeholder.com/300x200" alt="Догляд для дітей">
-                    <p>Догляд для дітей</p>
+                    <img src="https://via.placeholder.com/300x200" alt="Догляд за дітьми">
+                    <p>Догляд за дітьми</p>
                 </div>
                 <div class="slider-item kids">
-                    <img src="https://via.placeholder.com/300x200" alt="Зачіски">
-                    <p>Зачіски</p>
+                    <img src="https://via.placeholder.com/300x200" alt="Дитяча зачіска">
+                    <p>Дитяча зачіска</p>
                 </div>
             </div>
         </div>
@@ -206,58 +197,67 @@
         </div>
     </div>
 
+
+
     <script>
-        const sliderTrack = document.querySelector('.slider-track');
+        const sliderTrack = document.getElementById('slider-track');
+        const sliderButtons = document.querySelectorAll('.slider-button');
         const prevButton = document.getElementById('prev');
         const nextButton = document.getElementById('next');
-        const categoryButtons = document.querySelectorAll('.slider-button');
-        const allSlides = document.querySelectorAll('.slider-item');
 
-        let currentCategory = 'women';
-        let slideWidth = allSlides[0].offsetWidth + 15;
         let currentIndex = 0;
+        let currentCategory = 'women'; // Початкова категорія
 
+        // Фільтрування слайдів за категорією
         function filterSlides(category) {
-            sliderTrack.style.transition = 'none';
-            currentIndex = 0;
-            currentCategory = category;
-            const slides = Array.from(allSlides);
-            slides.forEach(slide => {
+            const allSlides = document.querySelectorAll('.slider-item');
+            allSlides.forEach(slide => {
                 slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
             });
-            sliderTrack.style.transform = 'translateX(0)';
+            currentIndex = 0; // Скидаємо індекс на початок
+            updateSlider();
         }
 
-        function moveSlider() {
-            const visibleSlides = Array.from(allSlides).filter(slide =>
-                slide.classList.contains(currentCategory)
-            );
-            const totalSlides = visibleSlides.length;
-            if (currentIndex < 0) currentIndex = totalSlides - 1;
-            if (currentIndex >= totalSlides) currentIndex = 0;
-            sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-            sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        // Оновлення положення слайдера
+        function updateSlider() {
+            const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+            const sliderWidth = visibleSlides[0]?.clientWidth || 0; // Отримуємо ширину слайда
+            sliderTrack.style.transform = `translateX(-${currentIndex * sliderWidth}px)`;
         }
 
+        // Події для кнопок категорій
+        sliderButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                sliderButtons.forEach(btn => btn.classList.remove('active')); // Знімаємо активний клас
+                button.classList.add('active'); // Додаємо активний клас
+                currentCategory = button.getAttribute('data-category'); // Оновлюємо категорію
+                filterSlides(currentCategory); // Фільтруємо слайди
+            });
+        });
+
+        // Події для стрілок
         prevButton.addEventListener('click', () => {
-            currentIndex--;
-            moveSlider();
+            const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+            const totalSlides = visibleSlides.length;
+
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Перехід назад циклічно
+            updateSlider();
         });
 
         nextButton.addEventListener('click', () => {
-            currentIndex++;
-            moveSlider();
+            const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+            const totalSlides = visibleSlides.length;
+
+            currentIndex = (currentIndex + 1) % totalSlides; // Перехід вперед циклічно
+            updateSlider();
         });
 
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterSlides(button.dataset.category);
-            });
-        });
+        // Оновлення слайдера при зміні розміру вікна
+        window.addEventListener('resize', updateSlider);
 
+        // Ініціалізація
         filterSlides(currentCategory);
+
     </script>
 </body>
 

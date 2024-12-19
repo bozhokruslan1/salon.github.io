@@ -1,61 +1,55 @@
 // SERVICES:
-const sliderTrack = document.getElementById('slider-track');
-const sliderButtons = document.querySelectorAll('.slider-button');
-const prevButton = document.getElementById('prev');
-const nextButton = document.getElementById('next');
-const sliderCounter = document.getElementById('slider-counter');
+const sliderTrack = document.querySelector('.slider-track');
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const categoryButtons = document.querySelectorAll('.slider-button');
+        const allSlides = document.querySelectorAll('.slider-item');
 
-let currentCategory = 'women';
-let currentIndex = 0;
+        let currentCategory = 'women';
+        let slideWidth = allSlides[0].offsetWidth + 15;
+        let currentIndex = 0;
 
-// Фільтрування слайдів за категорією
-function filterSlides(category) {
-    const allSlides = document.querySelectorAll('.slider-item');
-    allSlides.forEach(slide => {
-        slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
-    });
-    updateCounter();
-}
+        function filterSlides(category) {
+            sliderTrack.style.transition = 'none';
+            currentIndex = 0;
+            currentCategory = category;
+            const slides = Array.from(allSlides);
+            slides.forEach(slide => {
+                slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
+            });
+            sliderTrack.style.transform = 'translateX(0)';
+        }
 
-// Оновлення індекса
-function updateCounter() {
-    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
-    const totalSlides = visibleSlides.length;
-    sliderCounter.textContent = `${currentIndex + 1} / ${totalSlides}`;
-}
+        function moveSlider() {
+            const visibleSlides = Array.from(allSlides).filter(slide =>
+                slide.classList.contains(currentCategory)
+            );
+            const totalSlides = visibleSlides.length;
+            if (currentIndex < 0) currentIndex = totalSlides - 1;
+            if (currentIndex >= totalSlides) currentIndex = 0;
+            sliderTrack.style.transition = 'transform 0.5s ease-in-out';
+            sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
 
-// Перемикання категорії
-sliderButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        sliderButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        currentCategory = button.getAttribute('data-category');
-        currentIndex = 0;
+        prevButton.addEventListener('click', () => {
+            currentIndex--;
+            moveSlider();
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentIndex++;
+            moveSlider();
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                filterSlides(button.dataset.category);
+            });
+        });
+
         filterSlides(currentCategory);
-    });
-});
-
-// Управління навігацією
-prevButton.addEventListener('click', () => {
-    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
-    if (currentIndex > 0) {
-        currentIndex--;
-    }
-    sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateCounter();
-});
-
-nextButton.addEventListener('click', () => {
-    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
-    if (currentIndex < visibleSlides.length - 1) {
-        currentIndex++;
-    }
-    sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-    updateCounter();
-});
-
-// Початковий фільтр
-filterSlides(currentCategory);
  
 
 //  PORTFOLIO:
