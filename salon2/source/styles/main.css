@@ -251,3 +251,53 @@ body {
     background-repeat: no-repeat;
     /* Забороняє повторення зображення */
 }
+
+/* Модальне вікно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Зображення всередині модального вікна */
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain; /* Забезпечує збереження пропорцій */
+    border-radius: 10px;
+}
+
+/* Кнопка закриття */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #C763A0;
+}
+
+/* Забезпечує видимість на мобільних */
+@media (max-width: 480px) {
+    .close {
+        font-size: 25px;
+        top: 10px;
+        right: 10px;
+    }
+}
+

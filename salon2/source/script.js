@@ -94,36 +94,23 @@ filterSlides(currentCategory);
 // Масиви з фотографіями для кожної категорії
 const imageCategories = {
     manicure: [
-        './image/logo.png',
-        './image/logo.png',
-        './image/logo.png',
-        './image/logo.png',
-        './image/logo.png',
-        './image/logo.png'
+        './image/logo.png', './image/logo.png', './image/logo.png',
+        './image/logo.png', './image/logo.png', './image/logo.png'
     ],
     hair: [
-        'https://via.placeholder.com/200?text=Зачіска+1',
-        'https://via.placeholder.com/200?text=Зачіска+2',
-        'https://via.placeholder.com/200?text=Зачіска+3',
-        'https://via.placeholder.com/200?text=Зачіска+4',
-        'https://via.placeholder.com/200?text=Зачіска+5',
-        'https://via.placeholder.com/200?text=Зачіска+6'
+        'https://via.placeholder.com/200?text=Зачіска+1', 'https://via.placeholder.com/200?text=Зачіска+2',
+        'https://via.placeholder.com/200?text=Зачіска+3', 'https://via.placeholder.com/200?text=Зачіска+4',
+        'https://via.placeholder.com/200?text=Зачіска+5', 'https://via.placeholder.com/200?text=Зачіска+6'
     ],
     makeup: [
-        'https://via.placeholder.com/200?text=Макіяж+1',
-        'https://via.placeholder.com/200?text=Макіяж+2',
-        'https://via.placeholder.com/200?text=Макіяж+3',
-        'https://via.placeholder.com/200?text=Макіяж+4',
-        'https://via.placeholder.com/200?text=Макіяж+5',
-        'https://via.placeholder.com/200?text=Макіяж+6'
+        'https://via.placeholder.com/200?text=Макіяж+1', 'https://via.placeholder.com/200?text=Макіяж+2',
+        'https://via.placeholder.com/200?text=Макіяж+3', 'https://via.placeholder.com/200?text=Макіяж+4',
+        'https://via.placeholder.com/200?text=Макіяж+5', 'https://via.placeholder.com/200?text=Макіяж+6'
     ],
     lashes: [
-        'https://via.placeholder.com/200?text=Вії+1',
-        'https://via.placeholder.com/200?text=Вії+2',
-        'https://via.placeholder.com/200?text=Вії+3',
-        'https://via.placeholder.com/200?text=Вії+4',
-        'https://via.placeholder.com/200?text=Вії+5',
-        'https://via.placeholder.com/200?text=Вії+6',
+        'https://via.placeholder.com/200?text=Вії+1', 'https://via.placeholder.com/200?text=Вії+2',
+        'https://via.placeholder.com/200?text=Вії+3', 'https://via.placeholder.com/200?text=Вії+4',
+        'https://via.placeholder.com/200?text=Вії+5', 'https://via.placeholder.com/200?text=Вії+6'
     ]
 };
 
@@ -136,27 +123,48 @@ function loadImages(category, button) {
         const img = document.createElement('img');
         img.src = imageSrc;
         img.alt = category;
+        img.classList.add('clickable-image');
         container.appendChild(img);
     });
 
     // Активуємо натиснуту кнопку
     const buttons = document.querySelectorAll('.nav-buttons button');
-    buttons.forEach(btn => btn.classList.remove('active')); // Видаляємо клас active з усіх кнопок
-    button.classList.add('active'); // Додаємо клас active до натиснутої кнопки
+    buttons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
 }
+
+// Функція для відкриття модального вікна
+function openModal(src) {
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = src;
+    modal.style.display = 'flex'; // Відображаємо як flex для центрування
+}
+
+// Функція для закриття модального вікна
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+}
+
+// Додаємо обробники подій
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('clickable-image')) {
+        openModal(event.target.src);
+    }
+});
+
+document.getElementById('closeModal').addEventListener('click', closeModal);
+
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('imageModal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
 
 // Завантаження категорії за замовчуванням
 document.addEventListener('DOMContentLoaded', () => {
     const defaultButton = document.querySelector('.nav-buttons button.active');
-    loadImages('manicure', defaultButton); // Викликаємо функцію з категорією за замовчуванням
+    loadImages('manicure', defaultButton);
 });
-
-
-
-
-
-
-
-
-
-
