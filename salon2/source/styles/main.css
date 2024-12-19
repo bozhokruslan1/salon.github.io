@@ -119,6 +119,8 @@ body {
     overflow: hidden;
     position: relative;
     aspect-ratio: 3 / 2;
+    height: 500px;
+
     /* Встановлення співвідношення ширини до висоти */
 }
 
@@ -151,6 +153,7 @@ body {
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .control-button {

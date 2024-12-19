@@ -95,11 +95,11 @@ filterSlides(currentCategory);
 const imageCategories = {
     manicure: [
         './image/logo.png',
-        'https://via.placeholder.com/200?text=Манікюр+2',
-        'https://via.placeholder.com/200?text=Манікюр+3',
-        'https://via.placeholder.com/200?text=Манікюр+4',
-        'https://via.placeholder.com/200?text=Манікюр+5',
-        'https://via.placeholder.com/200?text=Манікюр+6'
+        './image/logo.png',
+        './image/logo.png',
+        './image/logo.png',
+        './image/logo.png',
+        './image/logo.png'
     ],
     hair: [
         'https://via.placeholder.com/200?text=Зачіска+1',
