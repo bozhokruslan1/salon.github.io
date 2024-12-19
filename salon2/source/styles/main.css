@@ -61,117 +61,110 @@ body {
 
 
 /*SERVICES: */
-        /* Основний контейнер */
-        .carousel-container {
-            position: relative;
-            max-width: 75%;
-            margin: auto;
-            overflow: hidden;
-            display: none; /* Сховані каруселі за замовчуванням */
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-        .carousel-container.active {
-            display: block; /* Показати активну карусель */
-        }
+.slider-container {
+    max-width: 90%;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+}
 
-        /* Трек слайдів */
-        .services .carousel-track {
-            display: flex;
-            gap: 15px; /* Відстань між картинками */
-            transition: transform 0.5s ease-in-out;
-        }
+.slider-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
 
-        /* Кожен слайд */
-        .services .carousel-item {
-            flex: 0 0 calc(33.333% - 15px); /* Три слайди для великих екранів */
-            height: 340.5px; /* Фіксована висота */
-            position: relative; /* Для тексту поверх картинки */
-            text-align: center;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+.slider-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
 
-        .services .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Зображення заповнює весь контейнер */
-        }
+.slider-button.active {
+    background-color: #C763A0;
+    color: white;
+}
 
-        /* Текст поверх зображення */
-        .services .carousel-item p {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background-color: #C763A0; /* Напівпрозорий фон */
-            color: white;
-            font-size: 18px;
-            font-weight: bold;
-            padding: 10px 0;
-            margin: 0;
-            text-align: center;
-        }
+.slider {
+    overflow: hidden;
+    position: relative;
+}
 
-        /* Верхні кнопки перемикання каруселей */
-        .switch-buttons {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-            gap: 20px;
-        }
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 10px;
+}
 
-        .switch-button {
-            padding: 10px 20px;
-            border: none;
-            background-color: #f0f0f0;
-            cursor: pointer;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+.slider-item {
+    min-width: calc(100% / 4);
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
 
-        .switch-button.active {
-            background-color: #C763A0;
-            color: white;
-        }
+.slider-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
+.slider-item p {
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 
-        /* Рахівник і кнопки */
-        .carousel-controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 15px;
-            font-size: 18px;
-            font-family: Arial, sans-serif;
-        }
+/* Управління */
+.slider-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    align-items: center;
+}
 
-        .carousel-button {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: #555;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
+.slider-counter {
+    font-size: 18px;
+}
 
-        .carousel-button:hover {
-            color: black;
-        }
+.control-button {
+    font-size: 24px;
+    cursor: pointer;
+    color: #888;
+    transition: 0.3s;
+}
 
-        .carousel-counter {
-            font-weight: bold;
-        }
+.control-button:hover {
+    color: #333;
+}
 
-        /* Адаптація для планшетів і телефонів */
-        @media (max-width: 768px) {
-            .carousel-item {
-                flex: 0 0 calc(50% - 15px); /* Два слайди для планшетів і телефонів */
-            }
-        }
+/* Адаптація */
+@media (max-width: 768px) {
+    .slider-item {
+        min-width: calc(100% / 2);
+    }
+}
 
 
 

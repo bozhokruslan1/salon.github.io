@@ -47,85 +47,69 @@
 
     <section>
         <!-- SERVICES: -->
-        <div class="container-fluid services">
-            <!-- Кнопки перемикання -->
-            <div class="switch-buttons">
-                <button class="switch-button active" data-carousel="women">Для жінок</button>
-                <button class="switch-button" data-carousel="men">Для чоловіків</button>
-                <button class="switch-button" data-carousel="kids">Для дітей</button>
+        <div class="slider-container">
+            <!-- Кнопки для вибору категорії -->
+            <div class="slider-buttons">
+                <button class="slider-button active" data-category="women">Для жінок</button>
+                <button class="slider-button" data-category="men">Для чоловіків</button>
+                <button class="slider-button" data-category="kids">Для дітей</button>
             </div>
-        
-            <!-- Карусель для жінок -->
-            <div class="carousel-container active" id="carousel-women">
-                <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Жінка 1">
-                            <p>ФАРБУВАННЯ ВОЛОССЯ</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Жінка 2">
-                            <p>МАНІКЮР</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Жінка 3">
-                            <p>ДОГЛЯД ЗА ВОЛОССЯМ</p>
-                        </div>
+    
+            <!-- Слайдер -->
+            <div class="slider">
+                <div class="slider-track" id="slider-track">
+                    <!-- Слайди для жінок -->
+                    <div class="slider-item women">
+                        <img src="https://via.placeholder.com/300x200" alt="Фарбування волосся">
+                        <p>Фарбування волосся</p>
+                    </div>
+                    <div class="slider-item women">
+                        <img src="https://via.placeholder.com/300x200" alt="Манікюр">
+                        <p>Нігтьовий сервіс</p>
+                    </div>
+                    <div class="slider-item women">
+                        <img src="https://via.placeholder.com/300x200" alt="Догляд для волосся">
+                        <p>Догляд для волосся</p>
+                    </div>
+                    <div class="slider-item women">
+                        <img src="https://via.placeholder.com/300x200" alt="Стрижки">
+                        <p>Стрижки</p>
+                    </div>
+    
+                    <!-- Слайди для чоловіків -->
+                    <div class="slider-item men">
+                        <img src="https://via.placeholder.com/300x200" alt="Стрижки">
+                        <p>Стрижки</p>
+                    </div>
+                    <div class="slider-item men">
+                        <img src="https://via.placeholder.com/300x200" alt="Бриття">
+                        <p>Бриття</p>
+                    </div>
+                    <div class="slider-item men">
+                        <img src="https://via.placeholder.com/300x200" alt="Догляд">
+                        <p>Догляд для чоловіків</p>
+                    </div>
+    
+                    <!-- Слайди для дітей -->
+                    <div class="slider-item kids">
+                        <img src="https://via.placeholder.com/300x200" alt="Стрижки">
+                        <p>Стрижки для дітей</p>
+                    </div>
+                    <div class="slider-item kids">
+                        <img src="https://via.placeholder.com/300x200" alt="Догляд">
+                        <p>Догляд для дітей</p>
                     </div>
                 </div>
-                <div class="carousel-controls">
-                    <button class="carousel-button prev">❮</button>
-                    <span class="carousel-counter">1 / 3</span>
-                    <button class="carousel-button next">❯</button>
-                </div>
             </div>
-        
-            <!-- Карусель для чоловіків -->
-            <div class="carousel-container" id="carousel-men">
-                <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Чоловік 1">
-                            <p>СТРИЖКИ</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Чоловік 2">
-                            <p>БРИТТЯ</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Чоловік 3">
-                            <p>ДОГЛЯД ЗА ВОЛОССЯМ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-button prev">❮</button>
-                    <span class="carousel-counter">1 / 3</span>
-                    <button class="carousel-button next">❯</button>
-                </div>
-            </div>
-        
-            <!-- Карусель для дітей -->
-            <div class="carousel-container" id="carousel-kids">
-                <div class="carousel-track-container">
-                    <div class="carousel-track">
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Дитина 1">
-                            <p>СТРИЖКИ ДЛЯ ДІТЕЙ</p>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://via.placeholder.com/300x200" alt="Дитина 2">
-                            <p>ДИТЯЧИЙ ДОГЛЯД ЗА ВОЛОССЯМ</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-controls">
-                    <button class="carousel-button prev">❮</button>
-                    <span class="carousel-counter">1 / 2</span>
-                    <button class="carousel-button next">❯</button>
-                </div>
+    
+            <!-- Управління -->
+            <div class="slider-controls">
+                <span class="control-button" id="prev">&#10094;</span>
+                <span class="slider-counter" id="slider-counter">1 / 4</span>
+                <span class="control-button" id="next">&#10095;</span>
             </div>
         </div>
+        
     
     
         <!-- PORTFOLIO: -->

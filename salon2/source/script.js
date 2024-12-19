@@ -1,46 +1,61 @@
 // SERVICES:
-const carousels = document.querySelectorAll('.carousel-container');
-        const switchButtons = document.querySelectorAll('.switch-button');
-        const tracks = document.querySelectorAll('.carousel-track');
-        const counters = document.querySelectorAll('.carousel-counter');
-        const prevButtons = document.querySelectorAll('.carousel-button.prev');
-        const nextButtons = document.querySelectorAll('.carousel-button.next');
+const sliderTrack = document.getElementById('slider-track');
+const sliderButtons = document.querySelectorAll('.slider-button');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+const sliderCounter = document.getElementById('slider-counter');
 
-        // Перемикання між каруселями
-        switchButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                switchButtons.forEach(btn => btn.classList.remove('active'));
-                carousels.forEach(carousel => carousel.classList.remove('active'));
-                document.getElementById(`carousel-${button.dataset.carousel}`).classList.add('active');
-                button.classList.add('active');
-            });
-        });
+let currentCategory = 'women';
+let currentIndex = 0;
 
-        // Логіка для кожної каруселі
-        carousels.forEach((carousel, index) => {
-            let currentIndex = 0;
-            const items = carousel.querySelectorAll('.carousel-item');
-            const track = tracks[index];
-            const counter = counters[index];
+// Фільтрування слайдів за категорією
+function filterSlides(category) {
+    const allSlides = document.querySelectorAll('.slider-item');
+    allSlides.forEach(slide => {
+        slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
+    });
+    updateCounter();
+}
 
-            const updateCarousel = () => {
-                const itemWidth = items[0].getBoundingClientRect().width;
-                track.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
-                counter.textContent = `${currentIndex + 1} / ${items.length}`;
-            };
+// Оновлення індекса
+function updateCounter() {
+    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+    const totalSlides = visibleSlides.length;
+    sliderCounter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+}
 
-            prevButtons[index].addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                updateCarousel();
-            });
+// Перемикання категорії
+sliderButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        sliderButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentCategory = button.getAttribute('data-category');
+        currentIndex = 0;
+        filterSlides(currentCategory);
+    });
+});
 
-            nextButtons[index].addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length;
-                updateCarousel();
-            });
+// Управління навігацією
+prevButton.addEventListener('click', () => {
+    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+    if (currentIndex > 0) {
+        currentIndex--;
+    }
+    sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateCounter();
+});
 
-            updateCarousel();
-        });
+nextButton.addEventListener('click', () => {
+    const visibleSlides = document.querySelectorAll(`.slider-item.${currentCategory}`);
+    if (currentIndex < visibleSlides.length - 1) {
+        currentIndex++;
+    }
+    sliderTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+    updateCounter();
+});
+
+// Початковий фільтр
+filterSlides(currentCategory);
  
 
 //  PORTFOLIO:
