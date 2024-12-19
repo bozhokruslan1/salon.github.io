@@ -1,6 +1,6 @@
 /* NAV BAR: */
 
-  /* це для абзацыв вподальшому 
+/* це для абзацыв вподальшому 
 @font-face {
     font-family: 'Tan Mon Cheri';
     src: url('/fonts/tan-mon-cheri.woff2') format('woff2'),
@@ -22,12 +22,12 @@ body {
 }
 
 .navbar-nav .nav-link.active {
-    color:black;
+    color: black;
 }
 
 .navbar-toggler {
     background-color: white;
-} 
+}
 
 .navbar-nav .nav-link {
     font-weight: bold;
@@ -39,9 +39,9 @@ body {
 }
 
 .nav-buttons {
-    display: flex;           
-    justify-content: center; 
-    margin-bottom: 20px;     
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .nav-buttons button {
@@ -193,21 +193,24 @@ body {
 
 
 
-
-
 /* PORTFOLIO: */
 .images-container {
-    width: 75%; /* Контейнер займатиме 80% ширини батьківського елемента */
-    margin: 0 auto; /* Центруємо контейнер горизонтально */
+    width: 75%;
+    /* Контейнер займатиме 80% ширини батьківського елемента */
+    margin: 0 auto;
+    /* Центруємо контейнер горизонтально */
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Три стовпці */
-    gap: 15px; /* Простір між фотографіями */
+    grid-template-columns: repeat(3, 1fr);
+    /* Три стовпці */
+    gap: 15px;
+    /* Простір між фотографіями */
     justify-content: center;
 }
 
 
 .images-container img {
-    width: 100%; /* Заповнює комірку сітки */
+    width: 100%;
+    /* Заповнює комірку сітки */
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -221,7 +224,8 @@ body {
 /* Адаптація для планшетів */
 @media (max-width: 768px) {
     .images-container {
-        grid-template-columns: repeat(2, 1fr); /* Два стовпці */
+        grid-template-columns: repeat(2, 1fr);
+        /* Два стовпці */
     }
 }
 
@@ -233,21 +237,14 @@ body {
 /* } */
 
 .images-container {
-    width: 75%; /* Розтягнути контейнер на всю ширину */
-    height: auto; /* Висота контейнера */
-    background-size: cover; /* Масштабування зображення, щоб покрити весь контейнер */
-    background-position: center; /* Центрування зображення */
-    background-repeat: no-repeat; /* Забороняє повторення зображення */
+    width: 100%;
+    /* Розтягнути контейнер на всю ширину */
+    height: auto;
+    /* Висота контейнера */
+    background-size: cover;
+    /* Масштабування зображення, щоб покрити весь контейнер */
+    background-position: center;
+    /* Центрування зображення */
+    background-repeat: no-repeat;
+    /* Забороняє повторення зображення */
 }
-
-
-
-
-
-
-
-
-
-
-
-

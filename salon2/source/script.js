@@ -1,60 +1,98 @@
 // SERVICES:
 const sliderTrack = document.querySelector('.slider-track');
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-        const categoryButtons = document.querySelectorAll('.slider-button');
-        const allSlides = document.querySelectorAll('.slider-item');
+const prevButton = document.getElementById('prev');
+const nextButton = document.getElementById('next');
+const categoryButtons = document.querySelectorAll('.slider-button');
+const allSlides = document.querySelectorAll('.slider-item');
 
-        let currentCategory = 'women';
-        let slideWidth = allSlides[0].offsetWidth + 15;
-        let currentIndex = 0;
+let currentCategory = 'women';
+let slideWidth = allSlides[0].offsetWidth + 15;
+let currentIndex = 0;
 
-        function filterSlides(category) {
-            sliderTrack.style.transition = 'none';
-            currentIndex = 0;
-            currentCategory = category;
-            const slides = Array.from(allSlides);
-            slides.forEach(slide => {
-                slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
-            });
-            sliderTrack.style.transform = 'translateX(0)';
-        }
+// Для свайпу
+let startX = 0;
+let endX = 0;
 
-        function moveSlider() {
-            const visibleSlides = Array.from(allSlides).filter(slide =>
-                slide.classList.contains(currentCategory)
-            );
-            const totalSlides = visibleSlides.length;
-            if (currentIndex < 0) currentIndex = totalSlides - 1;
-            if (currentIndex >= totalSlides) currentIndex = 0;
-            sliderTrack.style.transition = 'transform 0.5s ease-in-out';
-            sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        }
+function filterSlides(category) {
+    sliderTrack.style.transition = 'none';
+    currentIndex = 0;
+    currentCategory = category;
+    const slides = Array.from(allSlides);
+    slides.forEach(slide => {
+        slide.style.display = slide.classList.contains(category) ? 'block' : 'none';
+    });
+    sliderTrack.style.transform = 'translateX(0)';
+}
 
-        prevButton.addEventListener('click', () => {
-            currentIndex--;
-            moveSlider();
-        });
+function moveSlider() {
+    const visibleSlides = Array.from(allSlides).filter(slide =>
+        slide.classList.contains(currentCategory)
+    );
+    const totalSlides = visibleSlides.length;
 
-        nextButton.addEventListener('click', () => {
-            currentIndex++;
-            moveSlider();
-        });
+    if (currentIndex < 0) currentIndex = totalSlides - 1;
+    if (currentIndex >= totalSlides) currentIndex = 0;
 
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterSlides(button.dataset.category);
-            });
-        });
+    sliderTrack.style.transition = 'transform 0.5s ease-in-out';
+    sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+}
 
-        filterSlides(currentCategory);
- 
+prevButton.addEventListener('click', () => {
+    currentIndex--;
+    moveSlider();
+});
+
+nextButton.addEventListener('click', () => {
+    currentIndex++;
+    moveSlider();
+});
+
+categoryButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        filterSlides(button.dataset.category);
+    });
+});
+
+// Події для свайпів
+sliderTrack.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
+
+sliderTrack.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX;
+});
+
+sliderTrack.addEventListener('touchend', () => {
+    const threshold = 50; // Мінімальна відстань для реєстрації свайпу
+    const swipeDistance = startX - endX;
+
+    if (swipeDistance > threshold) {
+        // Свайп вліво
+        currentIndex++;
+        moveSlider();
+    } else if (swipeDistance < -threshold) {
+        // Свайп вправо
+        currentIndex--;
+        moveSlider();
+    }
+});
+
+// Оновлення ширини слайду при зміні розміру вікна
+window.addEventListener('resize', () => {
+    slideWidth = allSlides[0].offsetWidth + 15; // Ширина слайду + відступ
+    moveSlider();
+});
+
+// Ініціалізація
+filterSlides(currentCategory);
+
+
 
 //  PORTFOLIO:
- // Масиви з фотографіями для кожної категорії
- const imageCategories = {
+// Масиви з фотографіями для кожної категорії
+const imageCategories = {
     manicure: [
         './image/logo.png',
         'https://via.placeholder.com/200?text=Манікюр+2',
