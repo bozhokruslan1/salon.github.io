@@ -61,6 +61,7 @@ body {
 
 
 /*SERVICES: */
+/* Основні стилі */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -109,7 +110,7 @@ body {
 }
 
 .slider-item {
-    min-width: calc(100% / 4);
+    min-width: calc(100% / 3);
     background: white;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -125,7 +126,7 @@ body {
 }
 
 .slider-item p {
-    background-color: #000;
+    background-color: #C763A0; /* Фон кольору, як ви попросили */
     color: white;
     padding: 10px;
     margin: 0;
